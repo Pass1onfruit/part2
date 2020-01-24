@@ -1,0 +1,52 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int a = m-1;
+        int b = n-1;
+        for (int i = m+n-1; i >= 0; i--)
+        {
+            if ((b < 0)||(a >= 0) && (nums1[a] > nums2[b]))
+            {
+                nums1[i] = nums1[a];
+                a--;
+            }
+            else
+            {
+                nums1[i] = nums2[b];
+                b--;
+            }
+        }
+    }
+};
+
+//error
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+     vector<int> nums3 = nums1;
+     int n1 = 0, n2 = 0, n3 = 0;
+     while (n3 < m && n2 < n)
+     {
+        if (nums3[n3] >= nums2[n2])
+        {
+            nums1[n1] = nums2[n2];
+            n2++;
+            n1++;
+        }
+        else if (nums3[n3] < nums2[n2])
+        {
+            nums1[n1] = nums3[n3];
+            n3++;
+            n1++;
+        }
+        
+     }
+    if (n3 >= m-1)
+        for (; n2<n; n2++, n1++)
+            nums1[n1] = nums2[n2];
+    else if (n2 >= n-1)
+        for (; nums3[n3]!=0; n3++, n1++)
+            nums1[n1] = nums3[n3];
+    }
+};
+
