@@ -19,6 +19,7 @@ public:
     }
 };
 
+
 //error
 class Solution {
 public:
