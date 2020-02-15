@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+#include<algorithm>
+#include<map>
+
+using namespace std;
+
+int main()
+{
+	string str, str1;
+	while (getline(cin, str))
+	{
+		string str1;
+		map<string, int> Map;
+		map<string, int>::iterator it;
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (str[i] == ' ' || str[i] == ',' || str[i] == '.')
+			{
+				if (str1 != "")
+				{
+					it = Map.find(str1);
+					if (it == Map.end())
+						Map[str1] = 1;
+					else
+						it->second++;
+					str1 = "";
+				}
+			}
+			else
+			{
+				if (str[i] >= 'A' && str[i] <= 'Z')
+					str[i] += 32;
+				str1 = str1 + str[i];
+			}
+		}
+		for (it = Map.begin(); it != Map.end(); it++)
+			cout << it->first << " : " << it->second << endl;
+	}
+
+	return 0;
+}
