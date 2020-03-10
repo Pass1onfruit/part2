@@ -1,0 +1,36 @@
+	int one(int yearl,int monthl,int dayl,int month2,int money,int flag)
+{
+	days[2] = leepyear(yearl)	? 29:28;
+  if (monthl<Snonth2)
+	{
+	  money += (days[monthl]-dayl+1)*mons[monthl++];
+	  dayl = 1;
+	}
+	while (monthl<month2)
+	  money += days [monthl]*mons[monthl++];
+	if(flag)
+	  money += days [monthl] *mons [monthl];
+	    return money;
+}
+	int main()
+	{
+	  int	year1,monthl,dayl,year2,month2,day2;
+	  while (cin»yearl»monthl»dayl»year2»month2»day2)
+	  {
+		  int money = 0;
+		  if (yearl<year2)
+	    {
+	    money	=	one(yearl++,monthl,dayl,12,money,1);
+	    monthl =1;
+	    while	(yearl<year2)
+		  {
+	      money +=579;
+	      if(leepyear(yearl++))
+		      money++;
+	    }
+	   } 
+	  money = one (yearl,monthl, dayl,month2,money, 0) + (day2-dayl+l) *mons [monthl];
+	  cout«money«endl;
+	  }
+	    return 0;
+	}
