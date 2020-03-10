@@ -1,0 +1,44 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<set>
+
+using namespace std;
+
+int main()
+{
+    int length;
+    string s, next;
+    while (cin >> length)
+    {
+        set<string> data;
+        for (int i = 0; i < length; i++)
+        {
+            cin >> s;
+            data.insert(s);
+        }
+        auto it = data.begin();
+        s = *it;
+        set<string> res;
+        for (it++; it != data.end(); it++)
+        {
+            next = *it;
+            string t;
+            for (int i = 0; i < s.length(); i++)
+                t += next[i];
+            if (t == s && next[s.length()] == '/')
+                s = next;
+            else
+            {
+                res.insert(s);
+                s = next;
+            }
+        }
+        res.insert(s);
+        for (auto it = res.begin(); it != res.end(); it++)
+            cout << "mkdir -p " << *it << endl;
+        cout << endl;
+    }
+    
+    return 0;
+}
