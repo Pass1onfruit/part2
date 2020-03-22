@@ -1,0 +1,29 @@
+bool judge(int *a,int m, int d)
+{
+	for (int i = m - 1; i > 0; --i) {
+		if (a[i] > a[i - 1])return false;
+	}
+	return true;
+}
+
+int main()
+{
+	int n, ans = 0;
+	while (cin >> n)
+	{
+		int a[10];
+		for (int i = 1; i <= n; ++i)
+		{
+			int m = 0, j = i;
+			while(j)
+			{
+				a[m++] = j % 10;
+				j /= 10;
+			}
+			if (judge(a, m, j))
+			ans++;
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
