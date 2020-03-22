@@ -1,0 +1,40 @@
+int main()
+{
+	string a;
+	while (cin >> a)
+	{
+		int i = 0, j = 1, n = a.size();
+		for (i = 0; i < n; i++)
+		{
+			if (j == 1)
+			{
+				if (a[i] != 'a' && a[i] != 'e' && a[i] != 'i' && a[i] != 'o' && a[i] != 'u')
+					continue;
+				else j = 2, i--;
+			}
+			else if (j == 2)
+			{
+				if (a[i] == 'a' || a[i] == 'e' || a[i] == 'i' || a[i] == 'o' || a[i] == 'u')
+					continue;
+				else j = 3, i--;
+			}
+			else if (j == 3)
+			{
+				if (a[i] != 'a' && a[i] != 'e' && a[i] != 'i' && a[i] != 'o' && a[i] != 'u')
+					continue;
+				else j = 4, i--;
+			}
+			else if (j == 4)
+			{
+				if (a[i] == 'a' || a[i] == 'e' || a[i] == 'i' || a[i] == 'o' || a[i] == 'u')
+					continue;
+				else j = 0;
+			}
+		}
+		if (j == 4)
+			cout << "yes" << endl;
+		else
+			cout << "no" << endl;
+	}
+	return 0;
+}
