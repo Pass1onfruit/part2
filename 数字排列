@@ -1,0 +1,30 @@
+int max(int*a, int n, int b)
+{
+	int bb = a[b];
+	for (int i = b; i < n; ++i)
+	{
+		if (a[i] > bb)
+			bb = a[i];
+	}
+	return bb;
+}
+
+int main()
+{
+	int n;
+	while(cin >> n)
+	{
+		int* a = new int[n];
+		int min = a[0], b = 0; 
+		for (int i = 0; i < n; ++i)
+			cin >> a[i];
+		for (int i = 1; i < n - 1; ++i)
+		{
+			if (min < a[i] && a[i] < max(a,n,i + 1))
+				b++;
+			if (min > a[i])a[i] = min;
+		}
+		cout << b << " ";
+	}
+	return 0;
+}
