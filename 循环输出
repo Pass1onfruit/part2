@@ -1,0 +1,37 @@
+class Printer {
+public:
+	vector<int> clockwisePrint(vector<vector<int> > mat, int n, int m)
+	{
+		vector<int> res;
+		int colbegin = 0, colend = m - 1, rowbegin = 0, rowend = n - 1;
+		int i = 0, j = 0;
+		while (colbegin <= colend && rowbegin <= rowend)
+		{
+			for (j = colbegin; j <= colend; j++)
+				res.push_back(mat[i][j]);
+			j--;
+			rowbegin++;
+			if (res.size() >= n * m)
+				return res;
+			for (i = rowbegin; i <= rowend; i++)
+				res.push_back(mat[i][j]);
+			i--;
+			colend--;
+			if (res.size() >= n * m)
+				return res;
+			for (j = colend; j >= colbegin; j--)
+				res.push_back(mat[i][j]);
+			j++;
+			rowend--;
+			if (res.size() >= n * m)
+				return res;
+			for (i = rowend; i >= rowbegin; i--)
+				res.push_back(mat[i][j]);
+			i++;
+			colbegin++;
+			if (res.size() >= n * m)
+				return res;
+		}
+		return res;
+	}
+};
