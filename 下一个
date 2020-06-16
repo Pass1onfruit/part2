@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        map<int,int> m_num;
+        stack<int> s;
+        vector<int> re_num;  //储存结果
+
+        for(int i = nums2.size()-1; i>=0; i--)  //首先得出nums2中所有元素自己的下一个更大数
+        {
+            while(!s.empty()&&nums2[i] > s.top()) //只入栈比上一个数更大的
+            {
+                s.pop();    //把其中小的全部去掉
+            }
+
+            int num = s.empty()?-1:s.top();  //如果没有更大数则取-1
+            m_num.insert(make_pair(nums2[i], num));  //在map中映射，等下直接通过nums1获取
+            s.push(nums2[i]);  //符合条件，进栈
+        }
+
+        for(int j = 0; j < nums1.size(); j++)
+        {
+            re_num.push_back(m_num[nums1[j]]);
+        }
+        
+        return re_num;
+    }
+};
